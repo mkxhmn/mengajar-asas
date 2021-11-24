@@ -4,7 +4,7 @@ export const HeroBanner = () => {
   return (
     <div className="mb-16">
       <Container>
-        <h1 className="mt-16 mb-8 text-2xl font-extrabold text-gray-800 md:max-w-4xl sm:text-3xl">
+        <h1 className="mt-20 mb-8 text-2xl font-extrabold text-gray-800 md:max-w-4xl sm:text-3xl">
           Learning React lifecycle
           <br />
           with SpaceX Capsules public API.
