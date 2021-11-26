@@ -2,7 +2,7 @@ import { FunctionComponent } from "react";
 import { Container } from "./Container";
 
 export const Header: FunctionComponent = () => (
-  <header className="sticky top-0 z-30 bg-opacity-50 h-[72px] backdrop-filter backdrop-blur firefox:bg-opacity-90">
+  <header className="sticky top-0 z-30 h-[72px] backdrop-filter backdrop-blur">
     <Container>
       <div className="flex items-center justify-end border-gray-800">
         <a href="https://github.com/mkxhmn/mengajar-asas">
