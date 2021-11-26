@@ -7,12 +7,6 @@ import { Container } from "../../src/components/Container";
 import { Card } from "../../src/components/Card";
 
 const Lifecycle: FunctionComponent<{ data: ISpaceXResponse[] }> = (props) => {
-  // - [x] lifecycle
-  // - [x] map & keys
-  // - [x] custom hook
-  // - [x] serverside fetch
-  // - [ ] custom component
-
   const spaceXCapsulesData = useCapsules({}, props.data);
 
   return (
