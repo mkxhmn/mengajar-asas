@@ -1,4 +1,4 @@
-import { Action, action, ActionOn, actionOn } from "easy-peasy";
+import { Action, action, ActionOn, actionOn, persist } from "easy-peasy";
 import { ISpaceXResponse } from "@/src/hooks/useCapsules";
 
 export interface ICapsulesModel {
@@ -9,24 +9,29 @@ export interface ICapsulesModel {
   onSetFavorite: ActionOn<ICapsulesModel>;
 }
 
-export const capsulesModel: ICapsulesModel = {
-  favorites: [],
-  lastUpdated: "",
+export const capsulesModel: ICapsulesModel = persist(
+  {
+    favorites: [],
+    lastUpdated: "",
 
-  setFavorite: action((state, payload) => {
-    state.favorites.push(payload);
-  }),
+    setFavorite: action((state, payload) => {
+      state.favorites.push(payload);
+    }),
 
-  removeFavorite: action((state, payload) => {
-    state.favorites = state.favorites.filter(
-      (item) => item.capsule_serial !== payload.capsule_serial
-    );
-  }),
+    removeFavorite: action((state, payload) => {
+      state.favorites = state.favorites.filter(
+        (item) => item.capsule_serial !== payload.capsule_serial
+      );
+    }),
 
-  onSetFavorite: actionOn(
-    (actions) => actions.setFavorite,
-    (state) => {
-      state.lastUpdated = new Date().toDateString();
-    }
-  ),
-};
+    onSetFavorite: actionOn(
+      (actions) => actions.setFavorite,
+      (state) => {
+        state.lastUpdated = new Date().toDateString();
+      }
+    ),
+  },
+  {
+    allow: ["favorites"],
+  }
+);
