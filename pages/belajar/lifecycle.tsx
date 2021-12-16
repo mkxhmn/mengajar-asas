@@ -1,10 +1,10 @@
 import { FunctionComponent } from "react";
-import { ISpaceXResponse, useCapsules } from "../../src/hooks/useCapsules";
+import { ISpaceXResponse, useCapsules } from "@/src/hooks/useCapsules";
 import { GetServerSideProps } from "next";
-import { Header } from "../../src/components/Header";
-import { HeroBanner } from "../../src/components/HeroBanner";
-import { Container } from "../../src/components/Container";
-import { Card } from "../../src/components/Card";
+import { Header } from "@/src/components/Header";
+import { HeroBanner } from "@/src/components/HeroBanner";
+import { Container } from "@/src/components/Container";
+import { Card } from "@/src/components/Card";
 
 const Lifecycle: FunctionComponent<{ data: ISpaceXResponse[] }> = (props) => {
   const spaceXCapsulesData = useCapsules({}, props.data);

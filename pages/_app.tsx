@@ -1,5 +1,5 @@
 import type { AppProps } from "next/app";
-import "../styles/globals.css";
+import "styles/globals.css";
 import { StoreProvider } from "easy-peasy";
 import { store } from "@/src/store";
 
