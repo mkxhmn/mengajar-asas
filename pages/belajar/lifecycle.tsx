@@ -16,7 +16,7 @@ const Lifecycle: FunctionComponent<{ data: ISpaceXResponse[] }> = (props) => {
       <Container>
         <div className="grid lg:grid-cols-3 md:grid-cols-2 xs:grid-cols-1 gap-4">
           {spaceXCapsulesData.map((capsule) => (
-            <Card key={capsule.capsule_serial} {...capsule} />
+            <Card key={capsule.capsule_serial} {...capsule}/>
           ))}
         </div>
       </Container>
