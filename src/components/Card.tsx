@@ -1,10 +1,28 @@
 import { FunctionComponent, useMemo } from "react";
 import { ISpaceXResponse } from "../hooks/useCapsules";
-import { FavoriteButton } from "@/src/components/FavoriteButton";
 import { useStoreActions, useStoreState } from "@/src/store/hooks";
+import dynamic from "next/dynamic";
+import {
+  IFavoriteButton,
+  LoadingFavoriteButton,
+} from "@/src/components/FavoriteButton";
+
+const FavoriteButton = dynamic(
+  () =>
+    import("@/src/components/FavoriteButton").then<
+      FunctionComponent<IFavoriteButton>
+    >((mod) => mod.FavoriteButton),
+  {
+    ssr: false,
+    //@ts-ignore
+    loading: LoadingFavoriteButton,
+  }
+);
 
 export const Card: FunctionComponent<ISpaceXResponse> = (capsule) => {
-  const favorites = useStoreState((state) => state.capsules.favorites);
+  const favoritesByCapsuleSerial = useStoreState(
+    (state) => state.capsules.favoritesByCapsuleSerial
+  );
   const setFavorite = useStoreActions(
     (actions) => actions.capsules.setFavorite
   );
@@ -12,9 +30,12 @@ export const Card: FunctionComponent<ISpaceXResponse> = (capsule) => {
     (actions) => actions.capsules.removeFavorite
   );
 
-  const isFavorite = useMemo(
-    () => favorites.includes(capsule),
-    [favorites, capsule]
+  const isFavorite = useMemo<boolean>(
+    () =>
+      !!favoritesByCapsuleSerial.find(
+        (capsule_serial) => capsule_serial === capsule.capsule_serial
+      ),
+    [favoritesByCapsuleSerial, capsule]
   );
 
   const handleSetFavorite = () => {
